@@ -95,7 +95,7 @@
                 <input type="text" id="fechaFactura" readonly>
                 <input type="text" id="buscarProductoFactura" placeholder="Buscar producto para factura">
                 <select id="productoSeleccionado"></select>
-                <input type="number" id="cantidadFactura" placeholder="Cantidad" min="1" required>
+                <input type="number" id="cantidadFactura" placeholder="Cantidad" min="0.01" required>
                 <input type="number" id="precioFactura" placeholder="Precio" required step="0.01" readonly>
                 <select id="tipoFactura">
                     <option value="contado">Contado</option>
@@ -203,7 +203,7 @@
                 </select>
                 <input type="text" id="buscarProductoCompra" placeholder="Buscar producto para compra">
                 <select id="productoCompraSeleccionado"></select>
-                <input type="number" id="cantidadCompra" placeholder="Cantidad" min="1" required>
+                <input type="number" id="cantidadCompra" placeholder="Cantidad" min="0.01" required>
                 <input type="number" id="precioCompraProducto" placeholder="Precio de compra" required step="0.01">
                 <button type="button" onclick="agregarProductoCompra()">Añadir Producto</button>
                 <button type="button" onclick="mostrarFormNuevoProducto()">Añadir Nuevo Producto</button>
