@@ -118,7 +118,7 @@ document.getElementById("formInventario").addEventListener("submit", function (e
     codigo: document.getElementById("codigoProducto").value,
     precioCompra: Number.parseFloat(document.getElementById("precioCompra").value),
     precioVenta: Number.parseFloat(document.getElementById("precioVenta").value),
-    cantidad: Number.parseInt(document.getElementById("cantidadInventario").value),
+    cantidad: Number.parseFloat(document.getElementById("cantidadInventario").value),
     minimo: Number.parseInt(document.getElementById("cantidadMinima").value),
     etiqueta: document.getElementById("etiquetaProducto").value,
     fechaVencimiento: document.getElementById("fechaVencimiento").value,
@@ -283,7 +283,7 @@ let productosEnFactura = []
 
 function agregarProductoFactura() {
   const codigo = document.getElementById("productoSeleccionado").value
-  const cantidad = Number.parseInt(document.getElementById("cantidadFactura").value)
+  const cantidad = Number.parseFloat(document.getElementById("cantidadFactura").value)
   const producto = inventario.find((p) => p.codigo === codigo)
   if (producto && cantidad > 0) {
     if (cantidad > producto.cantidad) {
@@ -356,7 +356,7 @@ function finalizarFactura() {
   if (tipoFactura === "contado") {
     facturas.push(factura)
     ganancias += gananciaFactura
-    capital.efectivo += total
+    capital.efectivo += total - gananciaFactura
     ingresos.push({ fecha, monto: total, descripcion: `Factura al contado - ${cliente}`, etiqueta: "Venta" })
   } else {
     cuentasCobrar.push(factura)
@@ -417,7 +417,7 @@ function registrarPagoCuentaCobrar(index) {
   const factura = cuentasCobrar[index]
   facturas.push(factura)
   ganancias += factura.ganancia
-  capital.efectivo += factura.total
+  capital.efectivo += factura.total - factura.ganancia
   ingresos.push({
     fecha: new Date().toLocaleDateString(),
     monto: factura.total,
@@ -451,7 +451,7 @@ let productosEnCompra = []
 
 function agregarProductoCompra() {
   const codigo = document.getElementById("productoCompraSeleccionado").value
-  const cantidad = Number.parseInt(document.getElementById("cantidadCompra").value)
+  const cantidad = Number.parseFloat(document.getElementById("cantidadCompra").value)
   const precio = Number.parseFloat(document.getElementById("precioCompraProducto").value)
   const producto = inventario.find((p) => p.codigo === codigo)
   if (producto && cantidad > 0 && !isNaN(precio)) {
